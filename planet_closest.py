@@ -17,7 +17,7 @@ def closest_planet(planet):
     distance.step_days = 30  # about a month
     body = eph[planet]
 
-    t1 = ts.utc(-9999)
+    t1 = ts.utc(999)
     t2 = ts.utc(9999)
     t, values = find_minima(t1, t2, distance)
 
@@ -61,10 +61,14 @@ class MyTestCase(unittest.TestCase):
     def test_something(self):
         for planet in ['Mercury', 'Venus', 'Mars barycenter', 'Jupiter barycenter', 'Saturn barycenter']:
             this_date, this_distance, since, since_distance, until, until_distance = closest_planet(planet)
-            print(f"{planet.replace(' barycenter', '')} will be {(0.621371*this_distance)/1000000:,.2f} million miles from Earth on {this_date}")
-            print(f"this is the closest since {since} ({(0.621371*since_distance)/1000000:,.2f} million miles) {(this_distance-since_distance)*0.621371:,.2f} miles closer")
-            print(f"this is the closest until {until} ({(0.621371*until_distance)/1000000:,.2f} million miles) {(this_distance-until_distance)*0.621371:,.2f} miles closer")
+            print(
+                f"{planet.replace(' barycenter', '')} will be {(0.621371 * this_distance) / 1000000:,.2f} million miles from Earth on {this_date}")
+            print(
+                f"this is the closest since {since} ({(0.621371 * since_distance) / 1000000:,.2f} million miles) {(this_distance - since_distance) * 0.621371:,.2f} miles closer")
+            print(
+                f"this is the closest until {until} ({(0.621371 * until_distance) / 1000000:,.2f} million miles) {(this_distance - until_distance) * 0.621371:,.2f} miles closer")
             print()
+
 
 if __name__ == '__main__':
     unittest.main()
